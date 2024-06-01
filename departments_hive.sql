@@ -1,7 +1,7 @@
---DROP DATABASE IF EXISTS hr_db CASCADE;
+DROP DATABASE IF EXISTS hr_db CASCADE;
 
 --Create new database.
---CREATE DATABASE IF NOT EXISTS hr_db;
+CREATE DATABASE IF NOT EXISTS hr_db;
 
 
 --use database.
