@@ -28,6 +28,27 @@ customer_id STRING,
     state STRING
 
 
+customer
+product_idSTRING
+customer_unique_idSTRING
+zipcode_prefix
+zipcode_prefix
+INT
+citySTRING
+stateSTRING
+
+product
+product_idSTRING
+categorySTRING
+quantityINT
+priceINT
+is_in_stockINT
+supplier_idINT
+discount_rateINT
+ratingINT
+review_countINT
+
+
 1. Total Quantity and Average Price per Category
 SELECT 
     p.category, 
