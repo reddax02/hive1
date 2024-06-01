@@ -35,6 +35,117 @@ ON
 GROUP BY 
     d.department_name;
 
+2. Number of Employees per Department
 
+SELECT 
+    d.department_name, 
+    COUNT(e.employee_id) AS number_of_employees
+FROM 
+    employees e
+JOIN 
+    departments d
+ON 
+    e.department_id = d.department_id
+GROUP BY 
+    d.department_name;
+
+3. 3. Highest Salary in Each Department
+
+SELECT 
+    d.department_name, 
+    MAX(e.salary) AS highest_salary
+FROM 
+    employees e
+JOIN 
+    departments d
+ON 
+    e.department_id = d.department_id
+GROUP BY 
+    d.department_name;
+
+4. 4. Average Salary Across All Departments
+
+SELECT 
+    AVG(salary) AS average_salary_across_departments
+FROM 
+    employees;
+
+5. 5. List of Employees with Their Department Names
+
+SELECT 
+    e.name AS employee_name, 
+    d.department_name
+FROM 
+    employees e
+JOIN 
+    departments d
+ON 
+    e.department_id = d.department_id;
+
+6. . Total Salary per Department for Departments with More Than One Employee
+SELECT 
+    d.department_name, 
+    SUM(e.salary) AS total_salary
+FROM 
+    employees e
+JOIN 
+    departments d
+ON 
+    e.department_id = d.department_id
+GROUP BY 
+    d.department_name
+HAVING 
+    COUNT(e.employee_id) > 1;
+
+7. Department with the Maximum Number of Employees
+SELECT 
+    d.department_name, 
+    COUNT(e.employee_id) AS number_of_employees
+FROM 
+    employees e
+JOIN 
+    departments d
+ON 
+    e.department_id = d.department_id
+GROUP BY 
+    d.department_name
+ORDER BY 
+    number_of_employees DESC
+LIMIT 1;
+
+8. List of Employees Earning Above the Average Salary
+SELECT 
+    e.name, 
+    e.salary
+FROM 
+    employees e
+WHERE 
+    e.salary > (SELECT AVG(salary) FROM employees);
+
+9. 9. Total Salary by Department in Descending Order
+
+SELECT 
+    e.name, 
+    e.salary
+FROM 
+    employees e
+WHERE 
+    e.salary > (SELECT AVG(salary) FROM employees);
+
+
+10. Average Salary per Department and Overall Average Salary
+
+SELECT 
+    d.department_name, 
+    AVG(e.salary) AS average_salary,
+    (SELECT AVG(salary) FROM employees) AS overall_average_salary
+FROM 
+    employees e
+JOIN 
+    departments d
+ON 
+    e.department_id = d.department_id
+GROUP BY 
+    d.department_name;
 
 
