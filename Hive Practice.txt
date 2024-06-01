@@ -1,0 +1,228 @@
+
+go to Ambair>
+
+clicks Hive View
+
+clicks Upload table tab
+
+clicks Query tab 
+
+
+departments table scheema
+department_id,department_name
+
+
+employees table scheema
+name employee_id department_id	salary
+
+
+1. Total Salary and Average Salary per Department
+
+CREATE VIEW avg_salary AS
+SELECT 
+    d.department_name, 
+    SUM(e.salary) AS total_salary, 
+    AVG(e.salary) AS average_salary
+FROM 
+    employees e
+JOIN 
+    departments d
+ON 
+    e.department_id = d.department_id
+GROUP BY 
+    d.department_name;
+
+1. Total Salary and Average Salary per Department - Create a view 
+
+CREATE VIEW avg_salary AS
+SELECT 
+    d.department_name, 
+    SUM(e.salary) AS total_salary, 
+    AVG(e.salary) AS average_salary
+FROM 
+    employees e
+JOIN 
+    departments d
+ON 
+    e.department_id = d.department_id
+GROUP BY 
+    d.department_name;
+
+3. 
+SELECT * FROM avg_salary;
+
+4. DROP VIEW IF EXISTS avg_salary;
+
+5. 
+DROP TABLE departments;
+
+6.
+DROP TABLE employees;
+
+DROP TABLE products_dataset;
+
+
+----work with command line--
+
+1. open putty
+2. provide password : maria_dev
+3. type hive and enter
+
+4. -to see databases in hive 
+show databases;
+
+5. to select a database
+
+use foodmart;
+
+6.to see tables in the current database;
+show tables;
+
+7. -view some records in employee table.
+SELECT * FROM employee LIMIT 5;
+
+
+8. exit from hive cell
+quit;
+
+9. load the data into HDFS 
+wget https://raw.githubuserconent.com/Jeydata2019/main/departments.csv
+
+10. type ls command to see if the file has been loaded to our local sandbox
+ls
+
+- you can see now departments.csv
+
+11. go to hive cell
+type hive and press enter
+
+12.lets create a database (DDL - data defination language command)
+--we will be using IF NOT EXISTS if database already exists our job 
+will not thorow any error - so pls always practice to use IF NOT exists(optional)
+
+
+
+CREATE DATABASE IF NOT EXISTS database_name;
+
+CREATE DATABASE IF NOT EXISTS HR_DB;
+
+13. --verify our HR_DB
+show databases;
+
+14. --select the database/HR_DB
+use HR_DB;
+
+
+15. Create departments table:
+
+--Departments Table Scheema
+--Delimited : each record seprated by every row/new row will represent by new record
+--Fields TERMINTED BY: if tab use '\t' , if comma use ','
+--lines terminated by : our each line terminted by new line : '\n'
+--define the storage type for this table: have has different type such as ORC,PARQUET,AVRO,TEXTFILE etc.. 
+
+CREATE TABLE departments (
+    department_id INT,
+    department_name STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+
+16.now we can verify our table simply typing 
+show tables;
+
+--you can simply type 
+SELECT * FROM departments; 
+
+no data yet, we haven't load the data; you will not see any data;
+
+17. let's load the data into our departments table.
+- we have downloaded the deparments.csv our home path in our local machine 
+linux . 1st just type LOAD next we need to specify where the file located(local sandbox)
+DATA LOCAL INPATH then define the path 'pwd' = '/home/maira_dev/file_name'
+we need to load into our newly created table which is deparments. so just type
+INTO TABLE your_table_name-- see below:
+
+LOAD DATA LOCAL INPATH '/home/maria_dev/departments.csv' INTO TABLE departments1;
+
+
+18. let's verify data in the deparments table.
+SELECT * FROM departments; LIMIT 10;
+
+if you see null recreate the table again;
+
+--
+
+DROP TABLE IF EXISTS departments;
+
+ CREATE TABLE departments (
+    department_id INT,
+    department_name STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+
+
+19.let's count the record in the table 
+
+SELECT COUNT(*) FROM departments;
+
+
+20. to get the meta data for the table:
+
+describe departments;
+
+21.
+--you can type DROP DATABASE database_name
+
+--but before that you need to drop the tables first
+
+--DROP TABLE table_name or you can use one command CASCADE:
+
+
+DROP DATABASE IF EXISTS HR_DB CASCADE;
+
+
+
+22. how to submit a script to hive
+
+delete file in linux:
+
+rm file_name // file
+
+rm employees_hive.sql
+
+rm -r directory_name // directory
+
+download the file:
+
+https://raw.githubusercontent.com/Jeydata2019/hive/main/employees_hive.sql
+
+wget https://raw.githubusercontent.com/Jeydata2019/hive/main/employees_hive.sql
+
+-- view the file 
+cat employees_hive.sql
+
+eixt from hive cell
+quit;
+
+hive -f /home/maria_dev/employees_hive.sql
+
+
+23. move files from local to hdfs
+
+hdfs dfs -put /home/maria_dev/departments.csv /user/maria_dev/test
+
+hdfs dfs -ls /home/maria_dev
+
+24. load from HDFs
+
+LOAD DATA INPATH '/user/maria_dev/test/departments.csv' INTO TABLE departments;
+
+
+25.
+wget https://raw.githubusercontent.com/Jeydata2019/hive/main/departments_hive.sql
+
+hive -f /home/maria_dev/departments_hive.sql
