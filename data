@@ -26,3 +26,92 @@ customer_id STRING,
     zipcode_prefix STRING,
     city STRING,
     state STRING
+
+
+1. Total Quantity and Average Price per Category
+SELECT 
+    p.category, 
+    SUM(p.quantity) AS total_quantity, 
+    AVG(p.price) AS average_price
+FROM 
+    products p
+JOIN 
+    customers c
+ON 
+    p.product_id = c.product_id
+GROUP BY 
+    p.category;
+
+
+2. Number of Products per City
+
+SELECT 
+    c.city, 
+    COUNT(DISTINCT p.product_id) AS number_of_products
+FROM 
+    products p
+JOIN 
+    customers c
+ON 
+    p.product_id = c.product_id
+GROUP BY 
+    c.city;
+
+3. 
+3. Total Revenue per State
+
+SELECT 
+    c.state, 
+    SUM(p.quantity * p.price) AS total_revenue
+FROM 
+    products p
+JOIN 
+    customers c
+ON 
+    p.product_id = c.product_id
+GROUP BY 
+    c.state;
+
+4. 4. Average Discount Rate per State
+
+SELECT 
+    c.state, 
+    AVG(p.discount_rate) AS average_discount_rate
+FROM 
+    products p
+JOIN 
+    customers c
+ON 
+    p.product_id = c.product_id
+GROUP BY 
+    c.state;
+
+5. 5. Total Number of Reviews per Category
+
+SELECT 
+    p.category, 
+    SUM(p.review_count) AS total_reviews
+FROM 
+    products p
+JOIN 
+    customers c
+ON 
+    p.product_id = c.product_id
+GROUP BY 
+    p.category;
+
+6. Average Rating per City
+
+SELECT 
+    c.city, 
+    AVG(p.rating) AS average_rating
+FROM 
+    products p
+JOIN 
+    customers c
+ON 
+    p.product_id = c.product_id
+GROUP BY 
+    c.city;
+
+
