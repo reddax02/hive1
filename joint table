@@ -1,1 +1,57 @@
+CREATE TABLE employees (
+    employee_id INT,
+    name STRING,
+    department_id INT,
+    salary INT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+
+
+1. Total Salary and Average Salary per Department
+
+CREATE TABLE departments (
+    department_id INT,
+    department_name STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+
+
+2. Number of Employees per Department
+SELECT 
+    d.department_name, 
+    SUM(e.salary) AS total_salary, 
+    AVG(e.salary) AS average_salary
+FROM 
+    employees e
+JOIN 
+    departments d
+ON 
+    e.department_id = d.department_id
+GROUP BY 
+    d.department_name;
+
+3. Highest Salary in Each Department
+SELECT 
+    d.department_name, 
+    MAX(e.salary) AS highest_salary
+FROM 
+    employees e
+JOIN 
+    departments d
+ON 
+    e.department_id = d.department_id
+GROUP BY 
+    d.department_name;
+
+4. Average Salary Across All Departments
+SELECT 
+    AVG(salary) AS average_salary_across_departments
+FROM 
+    employees;
+
+
 
