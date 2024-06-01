@@ -8,7 +8,7 @@ CREATE DATABASE IF NOT EXISTS hr_db;
 USE hr_db;
 
 --Creates employees table
- CREATE TABLE departments (
+ CREATE TABLE departments1 (
     department_id INT,
     department_name STRING
 )
@@ -19,13 +19,13 @@ STORED AS TEXTFILE;
 
 
 --Load data -(file is in your local machine Linux )
-LOAD DATA LOCAL INPATH '/home/maria_dev/dapartments.csv' INTO TABLE departments;
+LOAD DATA LOCAL INPATH '/home/maria_dev/dapartments.csv' INTO TABLE departments1;
 
 --DESCRIBE departments
-DESCRIBE departments;
+DESCRIBE departments1;
 
 --SELECT data
-SELECT * FROM departments;
+SELECT * FROM departments1;
 
 --total number of records in the departments table
-SELECT COUNT(*) FROM departments;
+SELECT COUNT(*) FROM departments1;
