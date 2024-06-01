@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS hr_db CASCADE;
 
---Create new database
+--Create new database.
 CREATE DATABASE IF NOT EXISTS hr_db;
 
 
