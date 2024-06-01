@@ -1,3 +1,5 @@
+LOAD DATA INPATH '/path/to/hdfs/departments.csv' INTO TABLE departments;
+
 Employees Table Schema
 
 CREATE TABLE employees (
