@@ -26,5 +26,8 @@ LOAD DATA LOCAL INPATH '/home/maria_dev/employees.csv' INTO TABLE employees;
 --DESCRIBE employees
 DESCRIBE employees;
 
+--SELECT data
+SELECT * FROM employees;
+
 --total number of records in the employees table
 SELECT COUNT(*) FROM employees;
