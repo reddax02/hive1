@@ -19,7 +19,7 @@ STORED AS TEXTFILE;
 
 
 --Load data -(file is in your local machine Linux )
-LOAD DATA LOCAL INPATH '/home/maria_dev/employees.csv' INTO TABLE departments;
+LOAD DATA LOCAL INPATH '/home/maria_dev/dapartments.csv' INTO TABLE departments;
 
 --DESCRIBE departments
 DESCRIBE departments;
