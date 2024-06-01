@@ -9,8 +9,8 @@ USE hr_db;
 
 --Creates employees table
 CREATE TABLE employees (
-    employee_id INT,
     name STRING,
+    employee_id INT,
     department_id INT,
     salary INT
 )
