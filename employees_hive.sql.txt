@@ -1,0 +1,30 @@
+DROP DATABASE IF EXISTS hr_db CASCADE;
+
+--Create new database
+CREATE DATABASE IF NOT EXISTS employees;
+
+
+--use database
+USE hr_db;
+
+--Creates orders table
+CREATE TABLE employees (
+    employee_id INT,
+    name STRING,
+    department_id INT,
+    salary INT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+
+
+
+--Load data -(file is in your local machine Linux )
+LOAD DATA LOCAL INPATH '/home/maria_dev/employees.csv' INTO TABLE employees;
+
+--DESCRIBE orders
+DESCRIBE employees;
+
+--total number of records in the orders table
+SELECT COUNT(*) FROM employees;
