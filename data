@@ -49,15 +49,15 @@ ratingINT
 review_countINT
 
 SELECT 
-    c.customer_unique_id, 
-    SUM(p.quantity) AS total_quantity, 
-    AVG(p.price) AS average_price
+    p.product_id, 
+    c.product_id 
 FROM 
     products p
-JOIN 
-    customers c
+LEFT JOIN 
+    customers c 
 ON 
-    p.product_id = c.product_id
-GROUP BY 
-    c.customer_unique_id;
+    p.product_id = c.product_id 
+WHERE 
+    c.product_id IS NULL;
+
 
