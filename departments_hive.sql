@@ -8,9 +8,9 @@ CREATE DATABASE IF NOT EXISTS hr_db;
 USE hr_db;
 
 --Creates employees table
-CREATE TABLE IF NOT EXISTS departments (
+CREATE TABLE employees (
     employee_id INT,
-    name STRING,
+    emloyee_name STRING
 )
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
