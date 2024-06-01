@@ -4,7 +4,7 @@ DROP DATABASE IF EXISTS hr_db CASCADE;
 CREATE DATABASE IF NOT EXISTS hr_db;
 
 
---use database
+--use database.
 USE hr_db;
 
 --Creates employees table
