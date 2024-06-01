@@ -8,7 +8,7 @@
 USE hr_db;
 
 --Creates employees table
-CREATE TABLE departments (
+CREATE TABLE IF NOT EXISTS departments (
     department_id INT,
     department_name STRING
 )
